@@ -40,6 +40,23 @@ export default class Client {
     }
   }
 
+
+  static async auth (options: {id: string, secret: string, code: string, redirectUri?: string}) {
+    const uri = `https://slack.com/api/oauth.access`
+    const form = {
+      client_id: options.id,
+      client_secret: options.secret,
+      code: options.code,
+      redirect_uri: options.redirectUri
+    }
+    try {
+      const response = await request.post({ uri, json: true, form })
+      return converters.camel(response)
+    } catch (e) {
+      throw e
+    }
+  }
+
   async user (idOrPartialUser: string | PartialUser): Promise<User> {
     if (_.isString(idOrPartialUser)) {
       try {
