@@ -4,6 +4,7 @@ import User from 'types/user'
 function transformer (result, value, key): User {
   switch (key) {
     case 'id':
+      result.id = value
       result.handler = `<@${value}>`
       break
 
