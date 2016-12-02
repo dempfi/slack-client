@@ -51,6 +51,7 @@ export default class Client {
     }
     try {
       const response = await request.post({ uri, json: true, form })
+      if (!response.ok) throw new APIError(response.error)
       return converters.camel(response)
     } catch (e) {
       throw e

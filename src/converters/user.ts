@@ -3,8 +3,8 @@ import User from 'types/user'
 
 function transformer (result, value, key): User {
   switch (key) {
-    case 'name':
-      result.handler = value
+    case 'id':
+      result.handler = `<@${value}>`
       break
 
     case 'profile':
